@@ -34,7 +34,7 @@ export default function Layout() {
           <NavLink to="/" end>
             Modules
           </NavLink>
-          <NavLink to="/import">Import</NavLink>
+          <NavLink to="/batches">Batches</NavLink>
           <NavLink to="/backup">Backup</NavLink>
         </nav>
       </header>

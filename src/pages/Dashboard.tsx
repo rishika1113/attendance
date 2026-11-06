@@ -16,7 +16,7 @@ export default function Dashboard() {
         const marks = await db.marks.where('sessionId').anyOf(sessions.map((s) => s.id)).toArray()
         return { module: m, batch: batchById.get(m.batchId), summary: moduleSummary(students, sessions, marks, m.minAttendance) }
       }),
-    )
+    ).then((cards) => cards.sort((a, b) => a.module.code.localeCompare(b.module.code)))
   })
 
   if (!cards) return null
@@ -25,9 +25,9 @@ export default function Dashboard() {
     return (
       <section className="empty">
         <h1>No modules yet</h1>
-        <p>Import your existing Excel registers to get started.</p>
-        <Link className="button" to="/import">
-          Import .xlsx files
+        <p>Create a module and its batch, then add the students.</p>
+        <Link className="btn" to="/modules/new">
+          Create your first module
         </Link>
       </section>
     )
@@ -35,7 +35,12 @@ export default function Dashboard() {
 
   return (
     <section>
-      <h1>Modules</h1>
+      <div className="page-head">
+        <h1>Modules</h1>
+        <Link className="btn" to="/modules/new">
+          New module
+        </Link>
+      </div>
       <div className="cards">
         {cards.map(({ module: m, batch, summary: s }) => (
           <Link key={m.id} to={`/modules/${m.id}`} className="card">
