@@ -109,7 +109,6 @@ export default function ModuleRegister() {
                     <th className="num">P</th>
                     <th className="num">A</th>
                     <th className="num">E</th>
-                    <th className="num">Held</th>
                     <th className="num">%</th>
                     <th>Status</th>
                   </tr>
@@ -135,7 +134,6 @@ export default function ModuleRegister() {
                         <td className="num">{s.present}</td>
                         <td className="num">{s.absent}</td>
                         <td className="num">{s.excused}</td>
-                        <td className="num">{s.held}</td>
                         <td className="num">{formatPct(s.pct)}</td>
                         <td className={s.status === 'Below' ? 'warn' : 'ok-text'}>{s.status ?? '–'}</td>
                       </tr>
@@ -152,7 +150,7 @@ export default function ModuleRegister() {
                         {s.present}
                       </td>
                     ))}
-                    <td colSpan={6} />
+                    <td colSpan={5} />
                   </tr>
                   <tr>
                     <th colSpan={3} className="sticky-col">
@@ -163,7 +161,7 @@ export default function ModuleRegister() {
                         {s.absent}
                       </td>
                     ))}
-                    <td colSpan={6} />
+                    <td colSpan={5} />
                   </tr>
                   <tr>
                     <th colSpan={3} className="sticky-col">
@@ -174,13 +172,13 @@ export default function ModuleRegister() {
                         {formatPct(s.pct)}
                       </td>
                     ))}
-                    <td colSpan={6} />
+                    <td colSpan={5} />
                   </tr>
                 </tfoot>
               </table>
             </div>
             <p className="hint">
-              % = Present ÷ (Held − Excused). A dot means no mark was recorded, which counts as absent.
+              % = Present ÷ (Sessions held − Excused). A dot means no mark was recorded, which counts as absent.
             </p>
           </div>
 
